@@ -25,7 +25,10 @@ if ser.isOpen():
 else:
     print("Cannot open serial port")
 
-print(ser.name)
+print(ser.name) #print the name of the serial port
+print(time.strftime('%H:%M:%S')); #print the current time of date
+
+
 while ser.is_open == True:
     serTemp = ser.readlines(1)
     temp = ''.join(str(e) for e in serTemp) 
@@ -43,7 +46,7 @@ while ser.is_open == True:
         print(str1)
         
         #when if, count the time difference between times and put +smth
-        str2 = temp[2:7]
+        str2 = temp[2:7] #cut the input data from 2 to 7 position of letters, could have problem if temperature goes over 100 or under 0
         print(str2)
         str3 = "{"
         str4 = "}"
