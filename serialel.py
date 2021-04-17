@@ -1,6 +1,6 @@
 import datetime
 import time
-import serial
+import serial #need to download pyserial
 import json
 cels = '°C'
 oldtemp = '0'
@@ -8,17 +8,19 @@ oldtime = 0
 i = 0
 time.sleep(1);
 
+#attributes for serial
 ser = serial.Serial()
 ser.baudrate = 9600
 ser.port='COM3'
-    
 
+#try to open serial    
 try:
     ser.open()
 except Exception: 
     print("error open serial port: ")
     exit()
 
+#after opening serial, remove all data in serial buffer
 if ser.isOpen():
     ser.flushInput()
     ser.flushOutput()
