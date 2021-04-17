@@ -5,6 +5,7 @@ import json
 cels = '°C'
 oldtemp = '0'
 oldtime = 0
+i = 0
 time.sleep(1);
 
 ser = serial.Serial()
@@ -56,8 +57,13 @@ while ser.is_open == True:
         data = json.loads(vals)
 
         with open('./temps.json', 'a') as outfile:
+            if (i == 0):
+                outfile.write(times)
+                outfile.write(', \n');
             json.dump(data, outfile, indent= 2 )
             outfile.write(', \n')
+            i += 1
+            print(i);
         oldtime = currsecs
     else:
         None
