@@ -76,4 +76,4 @@ while ser.is_open == True:
         None
     oldtemp = temp
 else:
-    time.sleep(1)
+    time.sleep(0.5)
