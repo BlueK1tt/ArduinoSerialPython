@@ -6,7 +6,7 @@ cels = '°C'
 oldtemp = '0'
 oldtime = 0
 i = 0
-br = "\n"
+br = "\n" #not important
 time.sleep(1.5);
 
 #attributes for serial
