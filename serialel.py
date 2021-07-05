@@ -32,11 +32,11 @@ else:
 print(ser.name) #print the name of the serial port
 print(time.strftime('%H:%M:%S')); #print the current time of date
 
-
 while ser.is_open == True:
+
     serTemp = ser.readlines(1)
     temp = ''.join(str(e) for e in serTemp) 
-    time.sleep(1)
+    time.sleep(0.5)
     ser.flushInput() #needed to literally flush possible serial buffered data to be on time
 
     if(oldtemp != temp): #just cheks if the incoming data is "new" in compared to last added data dump
@@ -76,5 +76,16 @@ while ser.is_open == True:
     else:
         None
     oldtemp = temp #replace temprature data value, this is needed in order to check if same temperature was previusly added
-else:              #if the temperature has not changed in the matter of time lasted, will not write new line into JSON
-    time.sleep(0.5)#will save more space in the file, if nothing has changed, sleep 0.5s. really not needed, but gives treshold to new data 
+                    #if the temperature has not changed in the matter of time lasted, will not write new line into JSON
+                    #will save more space in the file, if nothing has changed, sleep 0.5s. really not needed, but gives treshold to new data 
+    if(str2 >= "80"):
+        print("System error")
+        print("Restarting system...")
+        print("");
+        time.sleep(1);
+        ser.close()
+        ser.open();
+    else:
+        continue;
+else:              
+    time.sleep(0.5)
